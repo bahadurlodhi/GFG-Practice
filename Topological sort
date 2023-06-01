@@ -1,0 +1,33 @@
+
+class Solution {
+public:
+    vector<int> topoSort(int V, vector<int> adj[]) {
+        vector<int> topologicalOrder;
+        vector<bool> visited(V, false);
+        stack<int> stack;
+
+        for (int v = 0; v < V; v++) {
+            if (!visited[v]) {
+                DFS(v, visited, stack, adj);
+            }
+        }
+
+        while (!stack.empty()) {
+            topologicalOrder.push_back(stack.top());
+            stack.pop();
+        }
+
+        return topologicalOrder;
+    }
+
+private:
+    void DFS(int v, vector<bool>& visited, stack<int>& stack, vector<int> adj[]) {
+        visited[v] = true;
+        for (int u : adj[v]) {
+            if (!visited[u]) {
+                DFS(u, visited, stack, adj);
+            }
+        }
+        stack.push(v);
+    }
+};
