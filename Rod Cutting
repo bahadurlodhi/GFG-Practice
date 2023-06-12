@@ -1,0 +1,17 @@
+class Solution{
+    public int cutRod(int price[], int n) {
+       int dp[]=new int[n+1];
+     dp[0]=0;
+     
+     for(int i=1;i<=n;i++)
+     {
+         int max_value =Integer.MIN_VALUE;
+         for(int j=1;j<=i;j++)
+         {
+             max_value=Math.max(max_value,price[j-1]+dp[i-j]);
+         }
+         dp[i]=max_value;
+     }
+     return dp[n];
+    }
+}
