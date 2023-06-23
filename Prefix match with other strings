@@ -1,0 +1,25 @@
+class Solution{   
+public:
+    int klengthpref(string arr[], int n, int k, string str){    
+        int count=0;
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i].size()>=k)
+            {
+                bool a=true;
+                for(int j=0;j<k;j++)
+                {
+                    if(arr[i][j]!=str[j])
+                    {
+                        a=false;
+                    }
+                }
+                if(a)
+                {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+};
